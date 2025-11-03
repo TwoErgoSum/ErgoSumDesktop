@@ -1,0 +1,74 @@
+{
+  "name": "ergosum-desktop",
+  "version": "1.0.0",
+  "description": "ErgoSum Desktop - AI-native workspace",
+  "main": "main.js",
+  "homepage": "https://ergosum.cc",
+  "author": {
+    "name": "ErgoSum",
+    "email": "support@ergosum.cc"
+  },
+  "license": "MIT",
+  "scripts": {
+    "start": "electron .",
+    "package": "electron-builder",
+    "package:mac": "electron-builder --mac",
+    "package:win": "electron-builder --win",
+    "package:linux": "electron-builder --linux",
+    "publish": "electron-builder --mac --win --linux --publish always"
+  },
+  "build": {
+    "appId": "com.ergosum.desktop",
+    "productName": "ErgoSum",
+    "protocols": {
+      "name": "ErgoSum Protocol",
+      "schemes": [
+        "ergosum"
+      ]
+    },
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "../public/icon-512.png"
+    ],
+    "publish": {
+      "provider": "github",
+      "owner": "TwoErgoSum",
+      "repo": "ErgoSumDesktop"
+    },
+    "mac": {
+      "category": "public.app-category.productivity",
+      "icon": "../public/icon-512.png",
+      "target": [
+        "dmg",
+        "zip"
+      ],
+      "darkModeSupport": true
+    },
+    "win": {
+      "target": [
+        "nsis",
+        "portable"
+      ],
+      "icon": "../public/icon-512.png"
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "icon": "../public/icon-512.png",
+      "category": "Office"
+    }
+  },
+  "devDependencies": {
+    "electron": "^28.2.0",
+    "electron-builder": "^24.9.1"
+  },
+  "dependencies": {
+    "electron-updater": "^6.6.2"
+  }
+}
